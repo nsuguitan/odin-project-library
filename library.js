@@ -3,7 +3,7 @@ let myLibrary = [
         title: "A Game of Thrones",
         author: "George R.R. Martin",
         pages: 694,
-        read: true 
+        read: true
     },
     {
         title: "Frankenstein",
@@ -18,6 +18,7 @@ function Book(title,author,pages,read){
     this.author = author;
     this.pages = pages;
     this.read = read;
+
 
 }
 Book.prototype.info = function(){
@@ -36,13 +37,20 @@ function addBookToLibrary(){
     return myLibrary
 }
 function deleteBookFromLibrary(buttonId){
+    console.log(myLibrary)
     console.log("Here Goes Nothing!");
-    titleKey = buttonId.substring(7);
-    myLibrary = myLibrary.filter(function(el){return el.title != titleKey});
+    console.log(buttonId)
+    myIndex = parseInt(buttonId.substring(7));
+    console.log("Index:",myIndex)
+    myLibrary.splice(myIndex,1);
     console.log(myLibrary);
     createTable(myLibrary);
 }
+function updateReadStatus(buttonId){
+console.log(buttonId)
+}
 function createTable(lib){
+    console.log(myLibrary)
     var html = '<table class="table table-striped table-bordered"';
 
     html += `
@@ -64,7 +72,11 @@ function createTable(lib){
         html+="<td>"+lib[i].author+"</td>";
         html+="<td>"+lib[i].pages+"</td>";
         html+="<td>"+lib[i].read+"</td>";
-        html+='<td><button type="button" class="btn btn-danger" id="delete_'+lib[i].title+'"onclick="return deleteBookFromLibrary(id);">DELETE</button></td>';
+        html+=`<td>
+        <button type="button" class="btn btn-danger" id="delete_`+i+`"onclick="return deleteBookFromLibrary(id);">DELETE</button>
+        <button type="button" class="btn btn-danger" id="update_`+i+`"onclick="return updateReadStatus(id);">UPDATE</button>
+        </td>`;
+        
         html+="</tr>";
 
     }
