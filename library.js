@@ -12,5 +12,7 @@ Book.prototype.info = function(){
 } 
 
 function addBookToLibrary(){
-
+    event.preventDefault();
+    console.log("This is a test")
+    return console.log("Hello World")
 }
