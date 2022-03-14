@@ -12,7 +12,15 @@ Book.prototype.info = function(){
 } 
 
 function addBookToLibrary(){
-    event.preventDefault();
-    console.log("This is a test")
+    event.preventDefault()
+    var bookTitle = document.forms['myform'].elements['title'].value;
+    var bookAuthor = document.forms['myform'].elements['author'].value;
+    var bookPages = document.forms['myform'].elements['pages'].value;
+    var bookRead = document.forms['myform'].elements['read'].checked;
+    console.log("This is the book title" + bookTitle);
+    console.log("This is the book author" + bookAuthor);
+    console.log("This is the book pages" + bookPages);
+    console.log("This is the book read status" + bookRead);
+    console.log("This is a test");
     return console.log("Hello World")
 }
