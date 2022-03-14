@@ -35,6 +35,13 @@ function addBookToLibrary(){
     createTable(myLibrary);
     return myLibrary
 }
+function deleteBookFromLibrary(buttonId){
+    console.log("Here Goes Nothing!");
+    titleKey = buttonId.substring(7);
+    myLibrary = myLibrary.filter(function(el){return el.title != titleKey});
+    console.log(myLibrary);
+    createTable(myLibrary);
+}
 function createTable(lib){
     var html = '<table class="table table-striped table-bordered"';
 
@@ -45,6 +52,7 @@ function createTable(lib){
             <th scope="col">Author</th>
             <th scope="col">Pages</th>
             <th scope="col">Finished Reading?</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     `;
@@ -56,7 +64,7 @@ function createTable(lib){
         html+="<td>"+lib[i].author+"</td>";
         html+="<td>"+lib[i].pages+"</td>";
         html+="<td>"+lib[i].read+"</td>";
-
+        html+='<td><button type="button" class="btn btn-danger" id="delete_'+lib[i].title+'"onclick="return deleteBookFromLibrary(id);">DELETE</button></td>';
         html+="</tr>";
 
     }
