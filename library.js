@@ -37,20 +37,23 @@ function addBookToLibrary(){
     return myLibrary
 }
 function deleteBookFromLibrary(buttonId){
-    console.log(myLibrary)
-    console.log("Here Goes Nothing!");
-    console.log(buttonId)
     myIndex = parseInt(buttonId.substring(7));
     console.log("Index:",myIndex)
     myLibrary.splice(myIndex,1);
-    console.log(myLibrary);
     createTable(myLibrary);
 }
 function updateReadStatus(buttonId){
-console.log(buttonId)
+    myIndex = parseInt(buttonId.substring(7));
+    console.log("Index:",myIndex)
+    console.log(myLibrary)
+    console.log("What I want to change",myLibrary[myIndex]["read"]);
+    myLibrary[myIndex]["read"] = !myLibrary[myIndex]["read"]
+    createTable(myLibrary);
 }
 function createTable(lib){
+    console.log("Creating Table")
     console.log(myLibrary)
+    console.log("---------------")
     var html = '<table class="table table-striped table-bordered"';
 
     html += `
