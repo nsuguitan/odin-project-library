@@ -39,9 +39,7 @@ function deleteBookFromLibrary(buttonId){
 function updateReadStatus(buttonId){
     myIndex = parseInt(buttonId.substring(7));
     console.log("At index:",myLibrary[myIndex])
-    temp = myLibrary[myIndex]
-    temp.updateRead()
-    myLibrary[myIndex]["read"] = temp.read
+    myLibrary[myIndex]["read"]= myLibrary[myIndex].updateRead()
     createTable(myLibrary);
 }
 function createTable(lib){
