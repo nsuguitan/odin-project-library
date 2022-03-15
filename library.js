@@ -14,7 +14,6 @@ Book.prototype.info = function(){
     return (title + " by " + author + ", " + pages + " pages, " + read);
 }
 Book.prototype.updateRead = function(){
-    console.log("You idiot, finally!")
     console.log("Now:", this.read)
     this.read = !this.read
     console.log("after:", this.read)
@@ -38,7 +37,6 @@ function deleteBookFromLibrary(buttonId){
     createTable(myLibrary);
 }
 function updateReadStatus(buttonId){
-    console.log("We are TRYING here")
     myIndex = parseInt(buttonId.substring(7));
     console.log("At index:",myLibrary[myIndex])
     temp = myLibrary[myIndex]
