@@ -1,17 +1,6 @@
-let myLibrary = [
-    {
-        title: "A Game of Thrones",
-        author: "George R.R. Martin",
-        pages: 694,
-        read: true
-    },
-    {
-        title: "Frankenstein",
-        author: "Mary Shelley",
-        pages: 280,
-        read: false
-    }
-]
+let myLibrary = []
+myLibrary.push(new Book("A Game of Thrones", "George R.R. Martin", 694, true));
+myLibrary.push(new Book("Frankenstein", "Mary Shelley", 280, false));
 
 function Book(title,author,pages,read){
     this.title = title;
@@ -23,6 +12,13 @@ function Book(title,author,pages,read){
 }
 Book.prototype.info = function(){
     return (title + " by " + author + ", " + pages + " pages, " + read);
+}
+Book.prototype.updateRead = function(){
+    console.log("You idiot, finally!")
+    console.log("Now:", this.read)
+    this.read = !this.read
+    console.log("after:", this.read)
+    return this.read
 } 
 
 function addBookToLibrary(){
@@ -32,7 +28,6 @@ function addBookToLibrary(){
     var bookPages = document.forms['myform'].elements['pages'].value;
     var bookRead = document.forms['myform'].elements['read'].checked;
     myLibrary.push(new Book(bookTitle,bookAuthor,bookPages,bookRead));
-    console.log(myLibrary);
     createTable(myLibrary);
     return myLibrary
 }
@@ -43,17 +38,15 @@ function deleteBookFromLibrary(buttonId){
     createTable(myLibrary);
 }
 function updateReadStatus(buttonId){
+    console.log("We are TRYING here")
     myIndex = parseInt(buttonId.substring(7));
-    console.log("Index:",myIndex)
-    console.log(myLibrary)
-    console.log("What I want to change",myLibrary[myIndex]["read"]);
-    myLibrary[myIndex]["read"] = !myLibrary[myIndex]["read"]
+    console.log("At index:",myLibrary[myIndex])
+    temp = myLibrary[myIndex]
+    temp.updateRead()
+    myLibrary[myIndex]["read"] = temp.read
     createTable(myLibrary);
 }
 function createTable(lib){
-    console.log("Creating Table")
-    console.log(myLibrary)
-    console.log("---------------")
     var html = '<table class="table table-striped table-bordered"';
 
     html += `
